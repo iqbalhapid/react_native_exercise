@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, Text } from 'react-native';
 
-export default class Cardboard extends Component {
+export default class CardBoard extends Component {
 render() {
     return (
             <View style={styles.container}>
