@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Image, Text, Platform } from 'react-native';
 
 export default class CardBoard extends Component {
 render() {
@@ -8,7 +8,7 @@ render() {
                 <View style={styles.cardContainer} >
                 <View style={styles.cardImageContainer}>
                     <Image style={styles.cardImage}
-                    style={require('./img/user.jpg')} />
+                    source={require('./img/user.jpg')} />
                 </View>
                 <View>
                     <Text style={styles.cardName}>
@@ -17,12 +17,12 @@ render() {
                 </View>
                 <View style={styles.cardOccupationContainer}>
                     <Text style={styles.cardOccupation}>
-                            React Native Developer
+                            Founder
                     </Text>
                 </View>
                 <View>
                     <Text style={styles.cardDescription}>
-                            My obesession and ambition become a great programmer
+                    Great meals have a way of bringing family and friends together in a way that is truly special 
                     </Text>
                 </View>
             </View>
@@ -31,7 +31,7 @@ render() {
     }
 }
 
-const profileCardColor = 'dodgerblue';
+const profileCardColor = 'lightgrey';
 
 const styles = StyleSheet.create({
 container: {
@@ -45,9 +45,22 @@ cardContainer: {
     borderWidth : 3,
     borderStyle: 'solid',
     borderRadius: 20,
+    marginHorizontal: 16,
     backgroundColor: profileCardColor,
-    width: 300,
-    height: 400
+    width: 330,
+    height: 400,
+    ...Platform.select({ //don't forget to import Platform on top
+            ios: {
+            shadowColor: 'black',
+            shadowOffset: {
+            height: 10
+            },
+            shadowOpacity: 1
+            },
+            android: {
+            elevation: 15
+            }
+            })
     },
 cardImageContainer: {
     alignItems: 'center',
@@ -58,11 +71,26 @@ cardImageContainer: {
     height: 120,
     borderRadius: 60,
     marginTop: 30,
-    paddingTop: 15
+    paddingTop: 0,
+    ...Platform.select({
+        ios: {
+            shadowColor: 'black',
+            shadowOffset: {
+            height: 10,
+        },
+            shadowOpacity: 1
+        },
+        android: {
+            borderWidth: 2,
+            borderColor: 'black',
+            elevation: 15
+        }
+        })
 },
 cardImage: {
-    width: 80, 
-    height: 80
+    width: '100%', 
+    height: '100%',
+    borderRadius: 60
 },
 cardName: {
     color: 'white',
@@ -87,6 +115,7 @@ cardOccupation: {
     },
 cardDescription: {
     fontStyle: 'italic',
+    textAlign: 'center',
     marginTop: 10,
     marginRight: 40,
     marginLeft: 40,
