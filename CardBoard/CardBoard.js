@@ -8,7 +8,7 @@ render() {
                 <View style={styles.cardContainer} >
                 <View style={styles.cardImageContainer}>
                     <Image style={styles.cardImage}
-                    style={require('./img/4x4_iqbal.jpg')} />
+                    style={require('./img/user.jpg')} />
                 </View>
                 <View>
                     <Text style={styles.cardName}>
