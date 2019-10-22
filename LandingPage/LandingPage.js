@@ -3,60 +3,80 @@ import {Platform, StyleSheet, Text, View, Image, TextInput, ScrollView, Touchabl
 import CardBoard from '../CardBoard/CardBoard';
 
 export default class LandingPage extends Component{
+    static navigationOptions = {
+        header : null
+    };
     render(){
         return(
         // Wrapper page utuh
         <View style={styles.mainWrapper}>
-            {/* Wrapper Konten */}
-            <ScrollView style={styles.contentWrapper}>
             {/* Welcome Message */}
             <View style={styles.WelcomeBar}>
                 <View style={styles.WelcomeWrap}>
-                    <TextInput placeholder="Hi there, Whats up ?" style={styles.WelcomeText} />
+                    <TextInput placeholder="Hi what do you want to eat today ?" style={styles.WelcomeText} />
                     <Image source={require('./icon/smile.png')} style={styles.WelcomeIco}/>
                 </View>
                 {/* Greeting Icon */}
                 <View style={styles.GreetingWrap}>
-                    <Image style={{height:27, width: 27}}source={require('./icon/hand.png')} />
+                    <TouchableOpacity style={styles.NavBArMenuWrap} onPress={()=>this.props.navigation.push("Login")}>            
+                            <Image style={styles.NavIcon} source={require('./icon/login.jpg')} />
+                            <Text style={styles.NavText}>Login</Text>
+                    </TouchableOpacity>
+
                 </View>
             </View>
             {/* Akhir dari Welcome Message */}
 
-            {/* Login Form */}
-            <View style={styles.LoginFormWrap}>
-            <View style={styles.HeaderLogin}>
-                <Text style={styles.LoginText}>Login to Your Account</Text>
-            </View>
-            <View style={styles.LoginForm}>
-            <TextInput style={styles.Username} placeholder="Username" />
-            <TextInput style={styles.Username} placeholder="Password" />
-            <View style={{flexDirection:'row-reverse'}}>
-            <TouchableOpacity style={styles.LoginButton}>
-                    <Text style={styles.TapLogin}>Login</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{backgroundColor:'orange', paddingHorizontal: 12, paddingVertical: 11, alignSelf:'flex-end', borderRadius: 4}}>
-                    <Text style={{fontSize:13, fontWeight:'bold', color:'white', textAlign:'center'}}>Forgot Password ?</Text>
-            </TouchableOpacity>
-            </View>
-            </View>
-            
-            </View>
-
-
             {/*Awal Big Banner */}
-                <View style={{backgroundColor:'#F2F2F4', height:16, marginTop:20}}></View>
+            <View style={styles.BorderSeparate}></View>
+
+            {/* Wrapper Konten */}
+            <ScrollView style={styles.contentWrapper}>
             {/* NewsSection */}
-            <View style={{paddingTop: 16, paddingHorizontal: 16}}>
-            <View style={{position:'relative'}}>
-                <Image source={require('./img/food-banner.jpg')} style={{height: 170, width: '100%', borderRadius: 6}}/>
-                <View style={{width: '100%', height:'100%', position:'absolute', top:0, left:0, backgroundColor:'black', opacity:0.2, borderRadius:6 }}></View>
+            <View style={styles.BannerWrap}>
+            <View style={styles.ImgBannerWrap}>
+                <Image source={require('./img/food-banner.jpg')} style={styles.ImgBanner}/>
+                <View style={styles.ImgMask}></View>
             </View>
-            <View style={{paddingTop: 16, paddingBottom: 20, borderBottomColor:'#EBE9ED', borderBottomWidth:1, marginBottom: 20}}>
-                <Text style={{fontSize: 16, fontWeight:'bold', color: '#1C1C1C'}}>Our Company</Text>
-                <Text style={{fontSize: 14, fontWeight:'normal', color: '#7A7A7A'}}>We Can deliver our best food and beverages globe around the world in minutes</Text>
+            <View style={styles.CompanyProfileWrap}>
+                <Text style={styles.CompanyHeaderText}>Steak Wagyu</Text>
+                <Text style={styles.CompanyDescText}>We Can deliver our best food and beverages globe around the world in minutes</Text>
             {/* Button under article/ News */}
-            <TouchableOpacity style={{backgroundColor:'#61A756', paddingHorizontal: 12, paddingVertical: 11, alignSelf:'flex-end', borderRadius: 4}}>
-                    <Text style={{fontSize:13, fontWeight:'bold', color:'white', textAlign:'center'}}>READ</Text>
+            <TouchableOpacity style={styles.ReadButton}>
+                    <Text style={styles.ReadButtonTeks}>BUY</Text>
+            </TouchableOpacity>
+            </View>
+            </View>
+            {/* Akhir dari Big Banner */}
+             {/*Awal Big Banner */}
+            {/* <View style={styles.BorderSeparate}></View> */}
+            {/* NewsSection */}
+            <View style={styles.BannerWrap}>
+            <View style={styles.ImgBannerWrap}>
+                <Image source={require('./img/go-food-gm.jpg')} style={styles.ImgBanner}/>
+                <View style={styles.ImgMask}></View>
+            </View>
+            <View style={styles.CompanyProfileWrap}>
+                <Text style={styles.CompanyHeaderText}>Bakmi GM</Text>
+                <Text style={styles.CompanyDescText}>We Can deliver our best food and beverages globe around the world in minutes</Text>
+            {/* Button under article/ News */}
+            <TouchableOpacity style={styles.ReadButton}>
+                    <Text style={styles.ReadButtonTeks}>BUY</Text>
+            </TouchableOpacity>
+            </View>
+            </View>
+            {/* Akhir dari Big Banner */}
+            <View style={styles.BannerWrap}>
+            <View style={styles.ImgBannerWrap}>
+                <Image source={require('./img/go-food-kfc.jpg')} style={styles.ImgBanner}/>
+                <View style={styles.ImgMask}></View>
+            </View>
+            <View style={styles.CompanyProfileWrap}>
+                <Text style={styles.CompanyHeaderText}>Kentucky Fried Chicken</Text>
+                <Text style={styles.CompanyDescText}>We Can deliver our best food and beverages globe around the world in minutes</Text>
+            {/* Button under article/ News */}
+            <TouchableOpacity style={styles.ReadButton}>
+                    <Text style={styles.ReadButtonTeks}>BUY</Text>
             </TouchableOpacity>
             </View>
             </View>
@@ -68,19 +88,19 @@ export default class LandingPage extends Component{
 
 
             {/* Awal Bar Navigasi Bawah */}
-            <View style={styles.NavBottom}>
+            {/* <View style={styles.NavBottom}>
         
-            <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>            
-                <Image style={styles.NavIcon} source={require('./icon/google.png')} />
+            <TouchableOpacity style={styles.NavBArMenuWrap} onPress={()=>this.props.navigation.push("Login")}>            
+                <Image style={styles.NavIcon} source={require('./icon/login.jpg')} />
                 <Text style={styles.NavText}>Login</Text>
-            </View>
+            </TouchableOpacity>
 
-            <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>            
+            <TouchableOpacity style={styles.NavBArMenuWrap} onPress={() => this.props.navigation.navigate("Register")}>            
                 <Image style={styles.NavIcon} source={require('./icon/user.png')} />
                 <Text style={styles.NavText}>Register</Text>
-            </View>
+            </TouchableOpacity>
 
-            </View>
+            </View> */}
             {/* Akhir Navigasi Bawah */}
 
         </View>
@@ -172,6 +192,77 @@ const styles = StyleSheet.create({
         fontWeight:'bold', 
         color:'white', 
         textAlign:'center'
+    },
+    ForgotPasswordButton:{
+        backgroundColor:'orange', 
+        paddingHorizontal: 12, 
+        paddingVertical: 11, 
+        alignSelf:'flex-end', 
+        borderRadius: 4
+    },
+    ForgotPasswordTap:{
+        fontSize:13, 
+        fontWeight:'bold', 
+        color:'white', 
+        textAlign:'center'
+    },
+    BorderSeparate: {
+        backgroundColor:'#F2F2F4', 
+        height:16, marginTop:20
+    },
+    BannerWrap:{
+        paddingTop: 16, 
+        paddingHorizontal: 16
+    },
+    ImgBannerWrap:{position:'relative'},
+
+    ImgBanner:{height: 170, width: '100%', 
+    borderRadius: 6
+    },
+    ImgMask:{
+        width: '100%', 
+        height:'100%', 
+        position:'absolute', 
+        top:0, 
+        left:0, 
+        backgroundColor:'black', 
+        opacity:0.2, 
+        borderRadius:6 
+    },
+    CompanyProfileWrap:{
+        paddingTop: 16, 
+        paddingBottom: 20, 
+        borderBottomColor:'#EBE9ED', 
+        borderBottomWidth:1, 
+        marginBottom: 20
+    },
+    CompanyHeaderText:{
+        fontSize: 16, 
+        fontWeight:'bold',
+        color: '#1C1C1C'
+    },
+    CompanyDescText:{
+        fontSize: 14, 
+        fontWeight:'normal', 
+        color: '#7A7A7A'
+    },
+    ReadButton:{
+        backgroundColor:'#61A756', 
+        paddingHorizontal: 12, 
+        paddingVertical: 11, 
+        alignSelf:'flex-end', 
+        borderRadius: 4
+    },
+    ReadButtonTeks:{
+        fontSize:13, 
+        fontWeight:'bold', 
+        color:'white', 
+        textAlign:'center'
+    },
+    NavBArMenuWrap:{
+        flex:1, 
+        alignItems: 'center', 
+        justifyContent: 'center'
     },
     NavBottom:{
         height:54,
