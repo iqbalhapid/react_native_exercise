@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity} from 'react-native';
 import CardBoard from '../CardBoard/CardBoard';
+import Recipe from './API/FoodList';
 
 export default class LandingPage extends Component{
     static navigationOptions = {
@@ -83,6 +84,9 @@ export default class LandingPage extends Component{
             {/* Akhir dari Big Banner */}
             <View>
                 <CardBoard />
+            </View>
+            <View>
+                <Recipe />
             </View>
             </ScrollView>
 
