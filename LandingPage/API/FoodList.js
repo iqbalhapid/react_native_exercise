@@ -47,26 +47,32 @@ if (this.state.isLoading) {
 }
 
 return (
-    <View style={{ flex: 1, paddingTop: 20 }}>
+    <View style={{ flex: 1, paddingTop: 20, paddingBottom: 20, marginHorizontal: 16 }}>
     <FlatList
         data={this.state.meals}
         keyExtractor={(item, index) => index}
         renderItem={({ item }) => <View key={item.idMeal}>
         <Image
-            style={{ width: '100%', height: 250 }}
+            style={{ width: '100%', height: 250, borderRadius: 10 }}
             source={{ uri: item.strMealThumb }}
         />
         <Text
             style={styles.title}
-            onPress={() => Linking.openURL(item.strSource)}
         >
             {item.strMeal}
         </Text>
-        <Text>
+        <Text style={{fontSize:20, fontWeight:'bold', paddingBottom:5}}>Recipes:</Text>
+        <Text style={{textAlign:'auto'}}>
             {item.strInstructions}
         </Text>
-        
- 
+        <Text style={{fontSize:20, fontWeight:'bold', paddingBottom:5}}>Country Origin:</Text>
+        <Text style={{textAlign:'auto', fontSize:16, fontWeight:'bold', color:'green'}}>
+            {item.strArea}
+        </Text>
+        <Text style={{fontSize:20, fontWeight:'bold', paddingBottom:5}}>Category:</Text>
+        <Text style={{textAlign:'auto', fontSize:16, fontWeight:'bold',color:'green'}}>
+            {item.strCategory}
+        </Text>
         <Video source={{uri: item.strYoutube}}   // Can be a URL or a local file.
         ref={(ref) => {
             this.player = ref

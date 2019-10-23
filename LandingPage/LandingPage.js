@@ -6,7 +6,7 @@ import Recipe from './API/FoodList';
 export default class LandingPage extends Component{
     static navigationOptions = {
         header : null
-    };
+    }
     render(){
         return(
         // Wrapper page utuh
@@ -29,7 +29,7 @@ export default class LandingPage extends Component{
             {/* Akhir dari Welcome Message */}
 
             {/*Awal Big Banner */}
-            <View style={styles.BorderSeparate}></View>
+            {/* <View style={styles.BorderSeparate}></View> */}
 
             {/* Wrapper Konten */}
             <ScrollView style={styles.contentWrapper}>
@@ -83,11 +83,13 @@ export default class LandingPage extends Component{
             </View>
             {/* Akhir dari Big Banner */}
             <View>
-                <CardBoard />
-            </View>
-            <View>
                 <Recipe />
             </View>
+            <View style={styles.BorderSeparate}></View>
+            <View style={{marginBottom: 15}}>
+                <CardBoard />
+            </View>
+            
             </ScrollView>
 
 
@@ -123,7 +125,8 @@ const styles = StyleSheet.create({
     WelcomeBar:{
         marginHorizontal: 17, 
         flexDirection:'row', 
-        paddingTop: 15
+        paddingTop: 15,
+        paddingBottom: 10
     },
     WelcomeWrap:{
         position:'relative', 
@@ -212,7 +215,7 @@ const styles = StyleSheet.create({
     },
     BorderSeparate: {
         backgroundColor:'#F2F2F4', 
-        height:16, marginTop:20
+        height:16, marginTop:20, marginBottom: 10
     },
     BannerWrap:{
         paddingTop: 16, 
