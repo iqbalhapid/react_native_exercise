@@ -19,18 +19,18 @@ this.state = {
     isLoading: true
 }
 }
-componentDidMount() {
-return fetch(URL)
-    .then((response) => response.json())
-    .then((responseJson) => {
-    this.setState({
-        isLoading: false,
-        meals: responseJson.meals
-    });
-    })
-    .catch((error) => {
-    console.error(error);
-    });
+    async componentDidMount() {
+    try {
+        const response = await fetch(URL);
+        const responseJson = await response.json();
+        this.setState({
+            isLoading: false,
+            meals: responseJson.meals
+        });
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 
 render() {

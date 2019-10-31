@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity} from 'react-native';
 import CardBoard from '../CardBoard/CardBoard';
 import Recipe from './API/FoodList';
+import Customer from './API/Customer';
 
 export default class LandingPage extends Component{
     static navigationOptions = {
@@ -89,7 +90,9 @@ export default class LandingPage extends Component{
             <View style={{marginBottom: 15}}>
                 <CardBoard />
             </View>
-            
+            <View>
+                <Customer />
+            </View>
             </ScrollView>
 
 

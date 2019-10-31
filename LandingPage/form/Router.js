@@ -6,7 +6,24 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import LandingPage from '../LandingPage'
 import Login from './login';
 import Register from './register';
+import Admin from './adminPage';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+const AdminNav = createStackNavigator({
+    Admin: {screen: Admin},
+    Login : {screen: Login}
+},{initialRouteName: 'Login'},{defaultNavigationOptions:{header: null}})
+
+
+AdminNav.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true;
+    if (navigation.state.index > 0 ){
+        tabBarVisible = false;
+    }
+    return {tabBarVisible};
+}
+
+
 
     const RootStack = createMaterialBottomTabNavigator(
         {
@@ -18,10 +35,13 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
                 <View>
                 <MaterialIcons style={[{ color: tintColor }]} size={25} name={'home'} />
                 </View>),
+                activeColor: '#f0edf6',
+                inactiveColor: 'gray',
+                barStyle: { backgroundColor: 'lightgray' },
             }
         },
         Login: {
-            screen: Login,
+            screen: AdminNav,
             navigationOptions: {
             tabBarLabel: 'Login',
             tabBarIcon: ({ tintColor }) => (
@@ -45,9 +65,11 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
         inactiveColor: 'gray',
         barStyle: { backgroundColor: 'lightgray' },
             }
-        }
+        },
+        // Admin: {
+        //     screen: Admin
+        // }
     },
-
     {
     initialRouteName: "LandingPage",
     activeColor: '#f0edf6',

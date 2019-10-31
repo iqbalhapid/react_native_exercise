@@ -1,10 +1,53 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 
 export default class Register extends Component{
+    constructor(props){
+        super(props);
+
+        this.state={
+            name: '',
+            Username: '',
+            email:'',
+            password:'',
+        }
+    }
+    
     static navigationOption = {
         title : 'Register'
     }
+
+    handlePress = async () => {
+        const { name, username, email, password, cpassword } = this.state
+        try{
+            let response = await fetch('http://192.168.42.130:9999/auth/register', {
+                method: 'POST',
+                headers: {
+                    Accept : 'application/json',
+                    'Content-Type' : 'application/json'
+                },
+                body : JSON.stringify({
+                        name: name,
+                        username : username,
+                        email: email,
+                        password: password
+                })
+            });
+            let responseJson = await response.json()
+            if (password != cpassword ){
+            Alert.alert('password you type didnt match ')
+            } else if (responseJson.statusCode == 201){
+                Alert.alert('Registration Successfull')
+            } else {
+                Alert.alert('please fill all the form')
+            }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+
+
     render(){
     return(
     <View style={styles.mainWrapper}>
@@ -15,12 +58,18 @@ export default class Register extends Component{
             <Text style={styles.RegisterText}>Register to Your Account</Text>
         </View>
         <View style={styles.RegisterForm}>
-        <TextInput style={styles.Username} placeholder="Email" />
-        <TextInput style={styles.Username} placeholder="Username" />
-        <TextInput style={styles.Username} placeholder="Password" />
-        <TextInput style={styles.Username} placeholder="Confirm password" />
+        <TextInput style={styles.Username} placeholder="name" 
+        onChangeText={(text) => this.setState({name: text})} />
+        <TextInput style={styles.Username} placeholder="Username" 
+        onChangeText={(text) => this.setState({username: text})}/>
+        <TextInput style={styles.Username} placeholder="Email" 
+        onChangeText={(text) => this.setState({email: text})}/>
+        <TextInput style={styles.Username} placeholder="Password" 
+        onChangeText={(text) => this.setState({password: text})} secureTextEntry={true} />
+        <TextInput style={styles.Username} placeholder="Confirm password" 
+        onChangeText={(text) => this.setState({cpassword: text})} secureTextEntry={true} />
         <View style={{flexDirection:'row-reverse'}}>
-        <TouchableOpacity style={styles.RegisterButton}>
+        <TouchableOpacity style={styles.RegisterButton} onPress={ () => this.handlePress()}>
                 <Text style={styles.TapRegister}>Submit</Text>
         </TouchableOpacity>
         </View>
